@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct Journals: View {
+    var fancyFont: Font = .custom("Baskerville", size: 45)
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Name's Journal")
+            .font(fancyFont)
     }
 }
 

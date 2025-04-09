@@ -17,8 +17,15 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Name's Journal")
-                .font(fancyFont)
+            TabView {
+                Tab("Journals", systemImage: "book") {
+                    Journals()
+                }
+                
+                Tab("Settings", systemImage: "gear") {
+                    Settings()
+                }
+            }
         }
         .padding()
     }
