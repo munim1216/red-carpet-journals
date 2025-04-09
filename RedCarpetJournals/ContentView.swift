@@ -7,13 +7,18 @@
 
 import SwiftUI
 
+// Trebuchet MS
+// Baskerville
+// Didot
+
 struct ContentView: View {
+    
+    var fancyFont: Font = .custom("Baskerville", size: 45)
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, test!")
+            Text("Name's Journal")
+                .font(fancyFont)
         }
         .padding()
     }
