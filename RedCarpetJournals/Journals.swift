@@ -11,8 +11,7 @@ struct Journals: View {
     var fancyFont: Font = .custom("Baskerville", size: 45)
     
     var body: some View {
-        Text("Name's Journal")
-            .font(fancyFont)
+
     }
 }
 
