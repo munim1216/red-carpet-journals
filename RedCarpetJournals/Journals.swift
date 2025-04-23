@@ -16,7 +16,7 @@ struct Journals: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
+                NavigationLink (destination: Journaling(journalEntries: $journalEntries)) {
                     Image(systemName: "plus.circle")
                         .font(.system(size: 75, weight: .thin))
                         .foregroundStyle(.blue)
@@ -24,13 +24,13 @@ struct Journals: View {
                 .offset(x: 125, y: 290)
                 
                 VStack {
-                    Text("Name's Journal")
+                    Text("\(name)'s Journal")
                         .font(fancyFont)
                     
-                    ForEach(journalEntries) { entry in NavigationLink(destination: EntryDetail(entry: entry)) {
-                        
-                        JournalDisplay(title: entry.title, date: "\(entry.date)", emoji: entry.emoji, color: entry.color)
-                    }
+                    ForEach(journalEntries) {
+                        entry in NavigationLink(destination: EntryDetail(entry: entry)) {
+                            JournalDisplay(title: entry.title, date: "\(entry.date)", emoji: entry.emoji, color: entry.color)
+                        }
                     }
                     Spacer()
                 }
