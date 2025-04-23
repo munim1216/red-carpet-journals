@@ -13,37 +13,31 @@ struct Journals: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                Text("Name's Journal")
-                    .font(fancyFont)
-                
-                ZStack {
-                    NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
-                        Image(systemName: "plus.square.dashed")
-                            .font(.system(size: 150, weight: .thin))
-                            .foregroundStyle(.blue)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    
-                    VStack {
-                        ForEach(journalEntries) { entry in NavigationLink(destination: EntryDetail(entry: entry)) {
-                            Rectangle()
-                                .fill(.cyan)
-                                .frame(width: 300, height: 70)
-                                .cornerRadius(10)
-                                .overlay(Text("\(entry.date) \(entry.emoji)"))
-                                .foregroundStyle(.white)
-                        }
-                            
-                        }
-                    }
+            ZStack {
+                NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
+                    Image(systemName: "plus.circle")
+                        .font(.system(size: 75, weight: .thin))
+                        .foregroundStyle(.blue)
                 }
-                Spacer()
-
+                .offset(x: 125, y: 290)
+                
+                VStack {
+                    Text("Name's Journal")
+                        .font(fancyFont)
+                    
+                    ForEach(journalEntries) { entry in NavigationLink(destination: EntryDetail(entry: entry)) {
+                        
+                        Rectangle()
+                            .fill(.cyan)
+                            .frame(width: 300, height: 70)
+                            .cornerRadius(10)
+                            .overlay(Text("\(entry.date) \(entry.emoji)"))
+                            .foregroundStyle(.white)
+                    }
+                    }
+                    Spacer()
+                }
             }
-            .padding()
-        
         }
     }
 }
