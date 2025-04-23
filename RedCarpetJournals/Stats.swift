@@ -55,10 +55,21 @@ struct Stats: View {
         VStack {
             Chart(data) {
                 BarMark(
-                    x: .value("Shape Type", $0.emoji),
-                    y: .value("Total Count", $0.count)
+                    x: .value("Emoji", $0.emoji),
+                    y: .value("Count", $0.count)
                 )
             }
+        }
+        .chartForegroundStyleScale([
+            "😍": Color.green,
+            "😀": Color.blue,
+            "😑": Color.yellow,
+            "😕": Color.orange,
+            "😧": Color.red
+        ])
+        .chartLegend { }
+        .chartXAxis {
+            AxisMarks(stroke: StrokeStyle(lineWidth: 0))
         }
         .padding()
     }
