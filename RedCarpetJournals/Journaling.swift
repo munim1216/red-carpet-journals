@@ -11,6 +11,7 @@ struct Journaling: View {
     @State private var entry: String = ""
     @State private var date = Date()
     @FocusState private var focusState: Bool
+    @Binding var journalEntries: [Entry]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -47,6 +48,9 @@ struct Journaling: View {
             Spacer()
             Button("Save") {
     //            Saving code
+                let newEntry = Entry(text: entry, date: date)
+                journalEntries.append(newEntry)
+                
             }
             .buttonStyle(.borderedProminent)
             .padding()
@@ -59,6 +63,4 @@ struct Journaling: View {
     }
 }
 
-#Preview {
-    Journaling()
-}
+

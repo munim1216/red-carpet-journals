@@ -12,8 +12,8 @@ import SwiftUI
 // Didot
 
 struct ContentView: View {
-    
     var fancyFont: Font = .custom("Baskerville", size: 45)
+    
     
     var body: some View {
         TabView {
