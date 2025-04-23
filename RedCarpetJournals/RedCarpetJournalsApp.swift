@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct RedCarpetJournalsApp: App {
+    @StateObject private var entries = SharedData()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(name: "Name")
+                .environmentObject(entries)
         }
     }
 }

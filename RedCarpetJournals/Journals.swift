@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Journals: View {
+    @Binding var name: String
+    @EnvironmentObject var sharedData: SharedData
     var fancyFont: Font = .custom("Baskerville", size: 45)
     @State var journalEntries: [Entry] = []
     
@@ -33,15 +35,11 @@ struct Journals: View {
                             .cornerRadius(10)
                             .overlay(Text("\(entry.date) \(entry.emoji)"))
                             .foregroundStyle(.white)
-                    }
+                        }
                     }
                     Spacer()
                 }
             }
         }
     }
-}
-
-#Preview {
-    Journals()
 }
