@@ -17,34 +17,33 @@ struct Journals: View {
                 Text("Name's Journal")
                     .font(fancyFont)
                 
-                HStack {
+                ZStack {
                     NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
-                            Image(systemName: "plus.square.dashed")
-                                .font(.system(size: 150, weight: .thin))
-                                .foregroundStyle(.blue)
-                                .offset(x: -20, y: 20)
-                        }
-                    
-                    
-                }
-                VStack {
-                    ForEach(journalEntries) { entry in NavigationLink(destination: EntryDetail(entry: entry)) {
-                        Rectangle()
-                            .fill(.cyan)
-                            .frame(width: 300, height: 70)
-                            .cornerRadius(10)
-                            .overlay(Text("\(entry.date)"))
-                            .foregroundStyle(.white)
+                        Image(systemName: "plus.square.dashed")
+                            .font(.system(size: 150, weight: .thin))
+                            .foregroundStyle(.blue)
+                            .multilineTextAlignment(.center)
                     }
-                        
+                    
+                    
+                    VStack {
+                        ForEach(journalEntries) { entry in NavigationLink(destination: EntryDetail(entry: entry)) {
+                            Rectangle()
+                                .fill(.cyan)
+                                .frame(width: 300, height: 70)
+                                .cornerRadius(10)
+                                .overlay(Text("\(entry.date) \(entry.emoji)"))
+                                .foregroundStyle(.white)
+                        }
+                            
+                        }
                     }
                 }
                 Spacer()
-                
-                
-                
+
             }
             .padding()
+        
         }
     }
 }
