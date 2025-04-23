@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Journaling: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var sharedData: SharedData
     @State private var entry: String = ""
     @State private var title: String = ""
     @State private var emoji: String = ""
@@ -75,6 +76,7 @@ struct Journaling: View {
                     let newEntry = Entry(text: entry, date: date, emoji: emoji, title: title, color: color)
                     journalEntries.append(newEntry)
                     dismiss()
+                    sharedData.journalEntries = journalEntries
                 }
                 .disabled(entry == "" || emoji == "" || title == "")
                 .buttonStyle(.borderedProminent)
@@ -132,5 +134,3 @@ struct Journaling: View {
         
     }
 }
-
-

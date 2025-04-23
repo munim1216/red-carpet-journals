@@ -12,23 +12,28 @@ import SwiftUI
 // Didot
 
 struct ContentView: View {
+    @EnvironmentObject var entries: SharedData
+    @State var name: String
     var fancyFont: Font = .custom("Baskerville", size: 45)
-    
     
     var body: some View {
         TabView {
             Tab("Journals", systemImage: "book") {
-                Journals()
+                Journals(name: $name)
             }
             
             Tab("Settings", systemImage: "gear") {
-                Settings()
+                Settings(name: $name)
+            }
+            
+            Tab("Stats", systemImage: "chart.bar") {
+                Stats(name: $name)
             }
         }
-
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(name: "Name")
+        .environmentObject(SharedData())
 }
