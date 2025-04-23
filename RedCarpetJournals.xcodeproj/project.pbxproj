@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3F0AF2B92DB9916400927B66 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0AF2B82DB9916400927B66 /* EmojiView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		3F0AF2B82DB9916400927B66 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		3FA2D3932DA5577600465D16 /* RedCarpetJournals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedCarpetJournals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -32,6 +37,7 @@
 		3FA2D38A2DA5577600465D16 = {
 			isa = PBXGroup;
 			children = (
+				3F0AF2B82DB9916400927B66 /* EmojiView.swift */,
 				3FA2D3952DA5577600465D16 /* RedCarpetJournals */,
 				3FA2D3942DA5577600465D16 /* Products */,
 			);
@@ -119,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F0AF2B92DB9916400927B66 /* EmojiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

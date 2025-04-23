@@ -27,12 +27,7 @@ struct Journals: View {
                     
                     ForEach(journalEntries) { entry in NavigationLink(destination: EntryDetail(entry: entry)) {
                         
-                        Rectangle()
-                            .fill(.cyan)
-                            .frame(width: 300, height: 70)
-                            .cornerRadius(10)
-                            .overlay(Text("\(entry.date) \(entry.emoji)"))
-                            .foregroundStyle(.white)
+                        JournalDisplay(title: entry.title, date: "\(entry.date)", emoji: entry.emoji, color: entry.color)
                     }
                     }
                     Spacer()
