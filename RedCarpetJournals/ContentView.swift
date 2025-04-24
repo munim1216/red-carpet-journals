@@ -21,7 +21,6 @@ struct ContentView: View {
             Tab("Journals", systemImage: "book") {
                 Journals(name: $name)
             }
-            
             Tab("Settings", systemImage: "gear") {
                 Settings(name: $name)
             }
@@ -29,6 +28,10 @@ struct ContentView: View {
             Tab("Stats", systemImage: "chart.bar") {
                 Stats(name: $name)
             }
+        }
+        .tint(.white)
+        .onAppear() {
+            UITabBar.appearance().unselectedItemTintColor = .standoutblack
         }
     }
 }

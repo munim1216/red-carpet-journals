@@ -26,7 +26,7 @@ struct JournalDisplay: View {
                     Text(title)
                         .font(.system(size: 300))
                         .minimumScaleFactor(0.01)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.white)
                         .padding()
         
                 }

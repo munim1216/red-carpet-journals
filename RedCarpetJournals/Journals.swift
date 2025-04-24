@@ -23,13 +23,14 @@ struct Journals: View {
                 NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
                     Image(systemName: "plus.circle")
                         .font(.system(size: 75, weight: .thin))
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.white)
                 }
                 .offset(x: 125, y: 290)
                 
                 VStack {
                     Text("Name's Journal")
                         .font(fancyFont)
+                        .foregroundStyle(.white)
                     
                     ForEach(journalEntries) { entry in NavigationLink(destination: EntryDetail(entry: entry)) {
                         

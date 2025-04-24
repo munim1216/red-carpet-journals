@@ -20,105 +20,107 @@ struct Journaling: View {
     @State private var color: Color = .black
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-    
-            ZStack {
-                TextField("Title", text: $title)
-                    .font(.system(size: 30))
+        ZStack {
+            
+            Rectangle()
+                .foregroundStyle(.mattblack)
+                .ignoresSafeArea()
+            
+            VStack(alignment: .leading, spacing: 10) {
                 
-                DatePicker(
-                    "",
-                    selection: $date,
-                    displayedComponents: [.date]
-                )
-            }
-            
-    
-            
-            TextEditor(text: $entry)
-                .focused($entryFocused)
-                .overlay {
-                    VStack {
-                        HStack {
-                            if !entryFocused && entry == "" {
-                                Text("Start your journal here")
-                                    .foregroundStyle(Color.gray)
-                            }
-                            Spacer()
-                        }
-                        Spacer()
-                    }
+                HStack {
+                    TextField("", text: $title, prompt: Text("Title").foregroundStyle(.textPreview))
+                        .font(.system(size: 30))
+                        .foregroundStyle(.white)
+                    
+                    DatePicker(
+                        "",
+                        selection: $date,
+                        displayedComponents: [.date]
+                    )
+                    .labelsHidden()
+                    .colorInvert()
+                   
                 }
-        }
-        .padding()
-        
-        VStack {
-
-            HStack {
-                Text("Rate Today!")
-                    .font(.system(size: 25))
                 
+                
+                TextField("", text: $entry,  prompt: Text("Start your journal entry here!").foregroundStyle(.textPreview))
+                    .foregroundStyle(.white)
+            
                 Spacer()
-                Button("Save") {
-                    //            Saving code
-                    let newEntry = Entry(text: entry, date: date, emoji: emoji, title: title, color: color)
-                    journalEntries.append(newEntry)
-                    dismiss()
-                    sharedData.journalEntries = journalEntries
+                
+                VStack {
+                    
+                    HStack {
+                        Text("Rate Today!")
+                            .font(.system(size: 25))
+                            .foregroundStyle(.white)
+                        
+                        Spacer()
+                        Button("Save") {
+                            //            Saving code
+                            let newEntry = Entry(text: entry, date: date, emoji: emoji, title: title, color: color)
+                            journalEntries.append(newEntry)
+                            dismiss()
+                            sharedData.journalEntries = journalEntries
+                        }
+                        .disabled(entry == "" || emoji == "" || title == "")
+                        .buttonStyle(.borderedProminent)
+                        if (entry == "" || emoji == "" || title == "") {
+                            .foregroundStyle(.red)
+                        } else {
+                            .foregroundStyle(.green)
+                        }
+                    }
+                    
+                    
+                    HStack {
+                        
+                        Button() {
+                            emoji = "😍"
+                            color = .green
+                        } label: {
+                            EmojiView(emoji: "😍", color: .green)
+                        }
+                        
+                        Button() {
+                            emoji = "😀"
+                            color = .blue
+                        } label: {
+                            EmojiView(emoji: "😀", color: .blue)
+                        }
+                        
+                        Button() {
+                            emoji = "😑"
+                            color = .yellow
+                        } label: {
+                            EmojiView(emoji: "😑", color: .yellow)
+                        }
+                        
+                        Button() {
+                            emoji = "😕"
+                            color = .orange
+                        } label: {
+                            EmojiView(emoji: "😕", color: .orange)
+                        }
+                        
+                        Button() {
+                            emoji = "😧"
+                            color = .red
+                        } label: {
+                            EmojiView(emoji: "😧", color: .red)
+                        }
+                        
+                    }
+                    .frame(height: 40)
+                    .padding(.bottom)
+                    
+                    
                 }
-                .disabled(entry == "" || emoji == "" || title == "")
-                .buttonStyle(.borderedProminent)
+                .padding()
+                
             }
-            
-           
-            HStack {
-                
-                Button() {
-                    emoji = "😍"
-                    color = .green
-                } label: {
-                    EmojiView(emoji: "😍", color: .green)
-                }
-                
-                Button() {
-                    emoji = "😀"
-                    color = .blue
-                } label: {
-                    EmojiView(emoji: "😀", color: .blue)
-                }
-
-                Button() {
-                    emoji = "😑"
-                    color = .yellow
-                } label: {
-                    EmojiView(emoji: "😑", color: .yellow)
-                }
-                
-                Button() {
-                    emoji = "😕"
-                    color = .orange
-                } label: {
-                    EmojiView(emoji: "😕", color: .orange)
-                }
-                
-                Button() {
-                    emoji = "😧"
-                    color = .red
-                } label: {
-                    EmojiView(emoji: "😧", color: .red)
-                }
-                
-            }
-            .frame(height: 40)
-            .padding(.bottom)
-            
-            
+            .padding()
         }
-        .padding()
-
-
-        
-
-        
     }
 }
