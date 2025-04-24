@@ -73,6 +73,7 @@ struct Stats: View {
         }
         .chartYAxis(.hidden)
         .padding()
+        .preferredColorScheme(sharedData.lightMode ? .light : .dark)
     }
 }
 

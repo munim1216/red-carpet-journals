@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Entry: Identifiable {
+struct Entry: Equatable, Identifiable {
     var id = UUID()
     var text: String
     var date: Date
