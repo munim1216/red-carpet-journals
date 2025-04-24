@@ -71,6 +71,7 @@ struct Stats: View {
         .chartXAxis {
             AxisMarks(stroke: StrokeStyle(lineWidth: 0))
         }
+        .chartYAxis(.hidden)
         .padding()
     }
 }

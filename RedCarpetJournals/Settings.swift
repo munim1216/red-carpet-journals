@@ -26,6 +26,21 @@ struct Settings: View {
                     }
             }
             .padding()
+            HStack {
+                Button("Light Mode") {
+                    UIWindow().overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+                }
+                .buttonStyle(.bordered)
+                Button("Dark Mode") {
+                    UIWindow().overrideUserInterfaceStyle = UIUserInterfaceStyle.dark
+                }
+                .buttonStyle(.bordered)
+            }
         }
     }
+}
+
+#Preview {
+    @Previewable @State var name = "Name"
+    Settings(name: $name)
 }
