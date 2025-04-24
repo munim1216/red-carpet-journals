@@ -9,6 +9,7 @@ import SwiftUI
 struct Settings: View {
     @Binding var name: String
     @EnvironmentObject var sharedData: SharedData
+    @State var lightMode = false
     @State var updatedName: String = ""
     
     var fancyFont: Font = .custom("Baskerville", size: 45)
@@ -39,10 +40,12 @@ struct Settings: View {
             }
             .buttonStyle(.bordered)
         }
+        .preferredColorScheme(sharedData.lightMode ? .light : .dark)
     }
 }
 
 #Preview {
     @Previewable @State var name = "Name"
     Settings(name: $name)
+        .environmentObject(SharedData())
 }
