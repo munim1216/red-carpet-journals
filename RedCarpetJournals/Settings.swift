@@ -52,12 +52,12 @@ struct Settings: View {
                 Button("Delete All Journal Entries") {
                     showConfirmationAlert = true
                 }
-                .buttonStyle(.bordered)
+                .alert("Confirm Deletion", isPresented: $showConfirmationAlert) {
                     Button("Confirm", role: .destructive) {
-            .padding()
+                        sharedData.journalEntries.removeAll()
                         deleted = true
                     }
-                } message: {
+                } message:  {
                     Text("Are you sure you want to delete ALL of your journal entries? 🫣")
                 }
                 .alert("All entries deleted.", isPresented: $deleted) {

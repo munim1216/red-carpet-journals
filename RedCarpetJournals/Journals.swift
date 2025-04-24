@@ -27,7 +27,7 @@ struct Journals: View {
                         .foregroundStyle(.textColors)
                     ScrollView(.vertical) {
                         ForEach(journalEntries.reversed()) {
-                            entry in NavigationLink(destination: EntryDetail(entry: entry)) {
+                            entry in NavigationLink(destination: EntryDetail(entries: $journalEntries, index: journalEntries.firstIndex(of: entry) ?? -1, entry: entry)) {
                                 JournalDisplay(title: entry.title, date: "\(entry.date)", emoji: entry.emoji, color: entry.color)
                             }
                             .padding()
