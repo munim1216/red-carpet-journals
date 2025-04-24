@@ -9,6 +9,9 @@ import SwiftUI
 struct Settings: View {
     @Binding var name: String
     @EnvironmentObject var sharedData: SharedData
+    @State private var deleted = false
+    @State private var entries = false
+    @State private var showConfirmationAlert = false
     @State var lightMode = false
     @State var updatedName: String = ""
     @State var color: Color = .red
@@ -47,9 +50,26 @@ struct Settings: View {
                 EmojiChanger(colorToEdit: $sharedData.worstColor, emoji: $sharedData.worstMood)
                 
                 Button("Delete All Journal Entries") {
-                    sharedData.journalEntries.removeAll()
+                    showConfirmationAlert = true
                 }
                 .buttonStyle(.bordered)
+                    Button("Confirm", role: .destructive) {
+            .padding()
+                        deleted = true
+                    }
+                } message: {
+                    Text("Are you sure you want to delete ALL of your journal entries? 🫣")
+                }
+                .alert("All entries deleted.", isPresented: $deleted) {
+                    Button("OK", role: .none) {
+                        entries = false
+                    }
+                }
+                .buttonStyle(.bordered)
+                .disabled(!entries)
+            }
+            .onAppear {
+                entries = !sharedData.journalEntries.isEmpty
             }
             .padding()
         }

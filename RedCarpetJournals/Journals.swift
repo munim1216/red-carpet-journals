@@ -44,6 +44,10 @@ struct Journals: View {
                 .offset(x: 125, y: 290)
             }
         }
+        .onAppear {
+            journalEntries = sharedData.journalEntries
+        }
         .preferredColorScheme(sharedData.lightMode ? .light : .dark)
     }
 }
+
