@@ -23,20 +23,8 @@ struct Journaling: View {
         VStack(alignment: .leading, spacing: 10) {
     
             ZStack {
-                TextEditor(text: $title)
+                TextField("Title", text: $title)
                     .font(.system(size: 30))
-                    .focused($titleFocused)
-                    .overlay {
-                        HStack {
-                            if !titleFocused && title == "" {
-                                Text("Title")
-                                    .foregroundStyle(.gray)
-                                    .font(.system(size: 30))
-                                Spacer()
-                            }
-                        }
-                    }
-                    .frame(width: .infinity, height: 30)
                 
                 DatePicker(
                     "",

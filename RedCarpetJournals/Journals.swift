@@ -16,6 +16,10 @@ struct Journals: View {
     var body: some View {
         NavigationView {
             ZStack {
+                Rectangle()
+                    .foregroundStyle(.mattblack)
+                    .ignoresSafeArea()
+                
                 NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
                     Image(systemName: "plus.circle")
                         .font(.system(size: 75, weight: .thin))
@@ -36,5 +40,6 @@ struct Journals: View {
                 }
             }
         }
+        
     }
 }
