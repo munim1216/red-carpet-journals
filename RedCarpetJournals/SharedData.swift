@@ -9,4 +9,6 @@ import Foundation
 
 class SharedData: ObservableObject {
     @Published var journalEntries: [Entry] = []
+    @Published var lightMode = false
 }
+

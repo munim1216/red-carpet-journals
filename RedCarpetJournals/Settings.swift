@@ -8,7 +8,10 @@
 import SwiftUI
 struct Settings: View {
     @Binding var name: String
+    @EnvironmentObject var sharedData: SharedData
+    @State var lightMode = false
     @State var updatedName: String = ""
+    
     var fancyFont: Font = .custom("Baskerville", size: 45)
         
     var body: some View {
@@ -22,6 +25,27 @@ struct Settings: View {
                     .font(.custom("Baskerville", size: 25))
             }
             .padding()
+            HStack {
+                Button("Light Mode") {
+                    sharedData.lightMode = true
+                }
+                .buttonStyle(.bordered)
+                Button("Dark Mode") {
+                    sharedData.lightMode = false
+                }
+                .buttonStyle(.bordered)
+            }
+            Button("Delete All Journal Entries") {
+                sharedData.journalEntries.removeAll()
+            }
+            .buttonStyle(.bordered)
         }
+        .preferredColorScheme(sharedData.lightMode ? .light : .dark)
     }
+}
+
+#Preview {
+    @Previewable @State var name = "Name"
+    Settings(name: $name)
+        .environmentObject(SharedData())
 }
