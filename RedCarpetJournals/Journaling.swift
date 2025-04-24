@@ -31,7 +31,7 @@ struct Journaling: View {
                 HStack {
                     TextField("", text: $title, prompt: Text("Title").foregroundStyle(.textPreview))
                         .font(.system(size: 30))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.textColors)
                     
                     DatePicker(
                         "",
@@ -39,13 +39,13 @@ struct Journaling: View {
                         displayedComponents: [.date]
                     )
                     .labelsHidden()
-                    .colorInvert()
+                    .foregroundStyle(.textColors)
                    
                 }
                 
                 
                 TextField("", text: $entry,  prompt: Text("Start your journal entry here!").foregroundStyle(.textPreview))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.textColors)
             
                 Spacer()
                 
@@ -54,7 +54,7 @@ struct Journaling: View {
                     HStack {
                         Text("Rate Today!")
                             .font(.system(size: 25))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.textColors)
                         
                         Spacer()
                         Button("Save") {
@@ -66,49 +66,43 @@ struct Journaling: View {
                         }
                         .disabled(entry == "" || emoji == "" || title == "")
                         .buttonStyle(.borderedProminent)
-                        entry == "" || emoji == "" || title == "") {
-                            .foregroundStyle(.red)
-                        } else {
-                            .foregroundStyle(.green)
-                        }
+                        .foregroundStyle(entry == "" || emoji == "" || title == ""  ? .deny : .confirm)
                     }
-                    
-                    
+                                        
                     HStack {
-                        
                         Button() {
-                            emoji = "😍"
-                            color = .green
+                            emoji = sharedData.topMood
+                            color = sharedData.topColor
                         } label: {
-                            EmojiView(emoji: "😍", color: .green)
+                            EmojiView(emoji: sharedData.topMood, color: sharedData.topColor)
                         }
                         
                         Button() {
-                            emoji = "😀"
-                            color = .blue
+                            emoji = sharedData.goodMood
+                            color = sharedData.goodColor
                         } label: {
-                            EmojiView(emoji: "😀", color: .blue)
+                            EmojiView(emoji: sharedData.goodMood, color: sharedData.goodColor)
                         }
                         
                         Button() {
-                            emoji = "😑"
-                            color = .yellow
+                            emoji = sharedData.okayMood
+                            color = sharedData.okayColor
                         } label: {
-                            EmojiView(emoji: "😑", color: .yellow)
+                            EmojiView(emoji: sharedData.okayMood, color: sharedData.okayColor)
                         }
                         
                         Button() {
-                            emoji = "😕"
-                            color = .orange
+                            emoji = sharedData.badMood
+                            color = sharedData.badColor
                         } label: {
-                            EmojiView(emoji: "😕", color: .orange)
+                            EmojiView(emoji: sharedData.badMood, color: sharedData.badColor)
                         }
                         
                         Button() {
-                            emoji = "😧"
-                            color = .red
+                            emoji = sharedData.worstMood
+                            color = sharedData.worstColor
                         } label: {
-                            EmojiView(emoji: "😧", color: .red)
+                            EmojiView(emoji: sharedData.worstMood, color: sharedData.worstColor)
                         }
                         
                     }

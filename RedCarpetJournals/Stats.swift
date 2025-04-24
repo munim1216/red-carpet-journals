@@ -52,27 +52,34 @@ struct Stats: View {
     }
     
     var body: some View {
-        VStack {
-            Chart(data) {
-                BarMark(
-                    x: .value("Emoji", $0.emoji),
-                    y: .value("Count", $0.count)
-                )
+        ZStack {
+            Rectangle()
+                .foregroundStyle(.mattblack)
+                .ignoresSafeArea()
+            
+            VStack {
+                Chart(data) {
+                    BarMark(
+                        x: .value("Emoji", $0.emoji),
+                        y: .value("Count", $0.count)
+                    )
+                }
             }
+            .chartForegroundStyleScale([
+                "😍": Color.green,
+                "😀": Color.blue,
+                "😑": Color.yellow,
+                "😕": Color.orange,
+                "😧": Color.red
+            ])
+            .chartLegend { }
+            .chartXAxis {
+                AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+            }
+            .chartYAxis(.hidden)
+            .padding()
         }
-        .chartForegroundStyleScale([
-            "😍": Color.green,
-            "😀": Color.blue,
-            "😑": Color.yellow,
-            "😕": Color.orange,
-            "😧": Color.red
-        ])
-        .chartLegend { }
-        .chartXAxis {
-            AxisMarks(stroke: StrokeStyle(lineWidth: 0))
-        }
-        .chartYAxis(.hidden)
-        .padding()
+        .preferredColorScheme(sharedData.lightMode ? .light : .dark)
     }
 }
 

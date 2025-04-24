@@ -21,15 +21,15 @@ struct ContentView: View {
             Tab("Journals", systemImage: "book") {
                 Journals(name: $name)
             }
-            Tab("Settings", systemImage: "gear") {
-                Settings(name: $name)
-            }
-            
             Tab("Stats", systemImage: "chart.bar") {
                 Stats(name: $name)
             }
+            Tab("Settings", systemImage: "gear") {
+                Settings(name: $name)
+            }
         }
-        .tint(.white)
+        .preferredColorScheme(entries.lightMode ? .light : .dark)
+        .tint(.tabColors)
         .onAppear() {
             UITabBar.appearance().unselectedItemTintColor = .standoutblack
         }

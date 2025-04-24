@@ -19,28 +19,31 @@ struct Journals: View {
                 Rectangle()
                     .foregroundStyle(.mattblack)
                     .ignoresSafeArea()
-                
-                NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
-                    Image(systemName: "plus.circle")
-                        .font(.system(size: 75, weight: .thin))
-                        .foregroundStyle(.white)
-                }
-                .offset(x: 125, y: 290)
+    
                 
                 VStack {
                     Text("\(name)'s Journal")
                         .font(fancyFont)
-                        .foregroundStyle(.white)
-                    
-                    ForEach(journalEntries) {
-                        entry in NavigationLink(destination: EntryDetail(entry: entry)) {
-                            JournalDisplay(title: entry.title, date: "\(entry.date)", emoji: entry.emoji, color: entry.color)
+                        .foregroundStyle(.textColors)
+                    ScrollView(.vertical) {
+                        ForEach(journalEntries.reversed()) {
+                            entry in NavigationLink(destination: EntryDetail(entry: entry)) {
+                                JournalDisplay(title: entry.title, date: "\(entry.date)", emoji: entry.emoji, color: entry.color)
+                            }
+                            .padding()
                         }
                     }
-                    Spacer()
+                    .padding()
                 }
+                
+                NavigationLink (destination: Journaling(journalEntries: $journalEntries)){
+                    Image(systemName: "plus.circle")
+                        .font(.system(size: 75, weight: .thin))
+                        .foregroundStyle(.tabColors)
+                }
+                .offset(x: 125, y: 290)
             }
         }
-        
+        .preferredColorScheme(sharedData.lightMode ? .light : .dark)
     }
 }
