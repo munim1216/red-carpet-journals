@@ -66,7 +66,7 @@ struct Journaling: View {
                         }
                         .disabled(entry == "" || emoji == "" || title == "")
                         .buttonStyle(.borderedProminent)
-                        if (entry == "" || emoji == "" || title == "") {
+                        entry == "" || emoji == "" || title == "") {
                             .foregroundStyle(.red)
                         } else {
                             .foregroundStyle(.green)
