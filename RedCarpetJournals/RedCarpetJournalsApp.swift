@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct RedCarpetJournalsApp: App {
-    @StateObject private var entries = SharedData()
+    @StateObject private var sharedData = SharedData()
     
     var body: some Scene {
         WindowGroup {
             ContentView(name: "Name")
-                .environmentObject(entries)
+                .environmentObject(sharedData)
+                .preferredColorScheme(sharedData.lightMode ? .light : .dark)
         }
     }
 }

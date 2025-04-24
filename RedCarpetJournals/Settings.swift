@@ -8,6 +8,7 @@
 import SwiftUI
 struct Settings: View {
     @Binding var name: String
+    @EnvironmentObject var sharedData: SharedData
     @State var updatedName: String = ""
     
     var fancyFont: Font = .custom("Baskerville", size: 45)
@@ -21,21 +22,22 @@ struct Settings: View {
                     .font(.custom("Baskerville", size: 25))
                 TextField("Name: ", text: $name)
                     .font(.custom("Baskerville", size: 25))
-                    .onSubmit {
-                        
-                    }
             }
             .padding()
             HStack {
                 Button("Light Mode") {
-                    UIWindow().overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+                    sharedData.lightMode = true
                 }
                 .buttonStyle(.bordered)
                 Button("Dark Mode") {
-                    UIWindow().overrideUserInterfaceStyle = UIUserInterfaceStyle.dark
+                    sharedData.lightMode = false
                 }
                 .buttonStyle(.bordered)
             }
+            Button("Delete All Journal Entries") {
+                sharedData.journalEntries.removeAll()
+            }
+            .buttonStyle(.bordered)
         }
     }
 }
